@@ -5,7 +5,7 @@ const url = require('url');
 
 const app = express();
 
-app.use(express.static('public/dist'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 
 app.get('/api/products/:product_id/reviews', (req, res) => {
   const query = url.parse(req.url, true).query;
