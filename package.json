@@ -13,7 +13,7 @@
     "nodemon": "nodemon ./server/index.js",
     "start": "webpack --config webpack.prod.js && node ./server/index.js",
     "server": "concurrently -k \"npm run nodemon\" \"npx webpack -w --config webpack.dev.js\"",
-    "docker_me": "sleep 10 && \"npm start\"",
+    "docker_me": "sleep 10 && npm start",
     "circleci": "webpack && npm run seed_db",
     "ci:test": "jest ./client --ci --runInBand --detectOpenHandles --forceExit",
     "test": "jest",
