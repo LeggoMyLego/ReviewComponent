@@ -21,6 +21,13 @@ class ReviewsList extends Component {
 
   handleChange(event) {
     this.setState({value: event.target.value, selectedValue: event.target.selectedOptions[0].innerText});
+    const { productId, getReviews } = this.props;
+
+    const filters = {
+      sort: event.target.value
+    };
+
+    getReviews(productId, filters);
   }
 
   render() {

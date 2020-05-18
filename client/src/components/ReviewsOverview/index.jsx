@@ -15,8 +15,12 @@ class ReviewsOverview extends Component {
     };
   }
 
-  async componentDidMount() {
-    Services.getReviews(1)
+  componentDidMount() {
+    this.getReviews(1);
+  }
+
+  async getReviews(productId, filters = null) {
+    await Services.getReviews(productId, filters)
       .then(res => {
         this.setState({
           reviews: res.reviews,
@@ -36,7 +40,7 @@ class ReviewsOverview extends Component {
         {reviews.length ? (
           <>
             <ReviewsOverall reviews={reviews}/>
-            <ReviewsList reviews={reviews} productId={productId}/>
+            <ReviewsList reviews={reviews} productId={productId} getReviews={this.getReviews.bind(this)} />
           </>
         ) : (
           <>
