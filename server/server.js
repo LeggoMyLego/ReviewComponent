@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Reviews = require('../controllers/reviews');
+const url = require('url');
 
 const app = express();
 
@@ -18,8 +19,13 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/products/:product_id/reviews', (req, res) => {
-  const productId = req.params.product_id;
-  Reviews.getReviewsForProduct(productId)
+  const query = url.parse(req.url, true).query;
+  const filters = {
+    ...query,
+    ...req.params
+  };
+
+  Reviews.getReviewsForProduct(filters)
     .then((reviews) => {
       if (reviews.count === undefined) {
         throw 'Reviews not found';
