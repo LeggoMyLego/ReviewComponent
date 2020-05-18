@@ -6,13 +6,13 @@ import { Spacer } from '../../shared/StyledComponents';
 
 const OverallExperience = ({experiences}) => (
   <OverallExperienceContainer>
-    <h3 className="overall-experience__title">
+    <OverallTitle>
       Overall Experience
-    </h3>
+    </OverallTitle>
     <div>
-      <span className="overall-experience__label">
+      <Title>
         Play Experience
-      </span>
+      </Title>
       <Ratings rating={experiences.playExperience} marker={MARKERS.LEGO}/>
     </div>
     <Spacer bm={1} />
@@ -38,4 +38,16 @@ export default OverallExperience;
 const OverallExperienceContainer = styled.div`
   padding: 1.25rem 0px 1rem 1.25rem;
   border-left: 1px solid rgb(224, 224, 224);
+`;
+
+const Title = styled.h2` 
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+`;
+
+const OverallTitle = styled.h3` 
+  font-size: 1rem;
+  line-height: 1.5625rem;
+  font-weight: 400;
 `;

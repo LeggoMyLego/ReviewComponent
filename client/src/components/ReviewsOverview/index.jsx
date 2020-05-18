@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Services from '../../services';
 import ReviewsList from '../ReviewsList';
 import ReviewsOverall from '../ReviewsOverall';
+import Pagination from '../Pagination';
 import { Button } from '../../shared/StyledComponents';
 
 class ReviewsOverview extends Component {
@@ -11,6 +12,7 @@ class ReviewsOverview extends Component {
     super(props);
 
     this.state = {
+      allReviews: [],
       reviews: []
     };
   }
@@ -23,7 +25,8 @@ class ReviewsOverview extends Component {
     await Services.getReviews(productId, filters)
       .then(res => {
         this.setState({
-          reviews: res.reviews,
+          reviews: res.reviews.slice(0, 5),
+          allReviews: res.reviews,
           productId: res.productId
         });
       })
@@ -32,15 +35,23 @@ class ReviewsOverview extends Component {
       });
   }
 
+  handlePage(currentPage) {
+    const { allReviews } = this.state;
+    console.log(currentPage);
+    this.setState({
+      reviews: allReviews.slice((currentPage - 1) * 5, (currentPage * 5))
+    })
+  }
+
   render() {
-    const { reviews, productId } = this.state;
+    const { reviews, allReviews, productId } = this.state;
     return (
       <OverviewContainer>
-        <h1 className="reviews-overview__title">Customer Reviews</h1>
         {reviews.length ? (
           <>
-            <ReviewsOverall reviews={reviews}/>
+            <ReviewsOverall reviews={reviews} allReviews={allReviews} />
             <ReviewsList reviews={reviews} productId={productId} getReviews={this.getReviews.bind(this)} />
+            <Pagination handlePage={this.handlePage.bind(this)} />
           </>
         ) : (
           <>

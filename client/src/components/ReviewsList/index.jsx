@@ -68,6 +68,9 @@ export default ReviewsList;
 
 const Title = styled.h2`
   margin: 1rem 0;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
 `;
 
 const SortBy = styled.div`

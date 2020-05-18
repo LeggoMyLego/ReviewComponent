@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import ReviewsStatistics from './ReviewsStatistics';
 import { Button } from '../../shared/StyledComponents';
 
-const ReviewsOverall = ({reviews}) => {
+const ReviewsOverall = ({reviews, allReviews}) => {
   return (
     <ReviewsOverallContainer>
-      <ReviewsStatistics reviews={reviews}/>
+      <ReviewsStatistics reviews={allReviews} />
       <WriteReviewContainer >
         <Button>
           Write a Review
