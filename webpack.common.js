@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -11,6 +12,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Production',
       template: 'template.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.HOST_URL': JSON.stringify(process.env.HOST_URL)
     }),
   ],
   output: {
