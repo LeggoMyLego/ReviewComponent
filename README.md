@@ -16,24 +16,23 @@
 1. [Development](#development)
 
 ## Usage
+npm install
 
-> Some usage instructions
+Dev: npm run server
+
+May have to modify reset-db to point to the right host
+
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
-- etc
+- Node 
 
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
+- direnv
+- .envrc (should contain dotenv)
+- .env (for docker)
+- Docker
+* Pull from stakashima21/reviews
+* Pull from stakashima21/reviews-proxy
 
