@@ -1,14 +1,25 @@
 const db = require('../db');
 const helpers = require('./helpers');
 
-const getReviewsForProduct = function (productId) {
+const getReviewsForProduct = function (filters) {
   return new Promise((resolve, reject) => {
+    const { product_id: productId, sort = 'default' } = filters;
+    const sortOptions = {
+      newFirst: 'ORDER BY created_at DESC',
+      oldFirst: 'ORDER BY created_at ASC',
+      highLow: 'ORDER BY rating DESC',
+      lowHigh: 'ORDER BY rating ASC',
+      helpful: 'ORDER BY  is_helpful DESC',
+      relavent: 'ORDER BY  created_at, is_helpful DESC',
+      default: ''
+    };
+
     const queryString = `
     SELECT prod.name AS product_name, prod.id AS product_id, rev.id, rev.created_at, rev.rating, rev.recommended, rev.subject, rev.description, rev.is_helpful, rev.is_not_helpful, exp.play_experience, exp.difficulty, exp.value, exp.build_time, users.name, users.age FROM products AS prod
     JOIN reviews AS rev ON rev.product_id=prod.id
     JOIN experiences AS exp ON exp.id=rev.experience_id
     JOIN users ON users.id=rev.user_id
-    WHERE prod.id=${productId}`;
+    WHERE prod.id=${productId} ${sortOptions[sort]}`;
 
     db.connection.query(queryString, (err, data) => {
       if (err) {

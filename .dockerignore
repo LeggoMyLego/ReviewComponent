@@ -10,4 +10,5 @@ jest.config.js
 enzyme.config.js
 coverage
 STYLE-GUIDE.md
+public/dist
 

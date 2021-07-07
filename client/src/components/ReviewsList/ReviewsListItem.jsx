@@ -66,19 +66,26 @@ class ReviewsListItem extends Component {
           <Ratings rating={review.rating.toFixed(1)} marker={MARKERS.STAR}/>
         </Spacer>
         <Spacer bm={1} data-test="subject">
-          {review.subject}
+          <SubjectText>
+            {review.subject}
+          </SubjectText>
         </Spacer>
         <Spacer bm={1} data-test="user">
-          <a href="#">
-            {review.user.name}
-          </a>
+          <UserText>
+            <p>   
+            <a href="#">
+              {review.user.name} 
+            </a>
+              | 35-44
+            </p>
+          </UserText>
         </Spacer>
         {
           review.recommended ? (
             <Spacer bm={1}>
               <Text>
                 <p className="recommendation">
-                  I would recommend this to a friend
+                  I would recommend this to a friend!
                 </p>
               </Text>
             </Spacer>
@@ -131,4 +138,16 @@ font-weight: 500;
   margin: 0;
   color: rgb(0, 133, 55);
 }
+ `;
+
+ const SubjectText = styled.span`
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+ `;
+
+ const UserText = styled.span`
+ font-size: 0.875rem;
+ line-height: 1.1875rem;
+ font-weight: 400;
  `;

@@ -27,7 +27,7 @@ const Markers = ({rating, marker = 'star'}) => {
           }
           return (
             <MarkerContainer key={idx} data-filled={isFilled}>
-              <img alt="marker" src={finalMarker ? finalMarker : isFilled ? markerUrl : emptyMarkerUrl} />
+              <img src={finalMarker ? finalMarker : isFilled ? markerUrl : emptyMarkerUrl} />
             </MarkerContainer>
           );
         })

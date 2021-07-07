@@ -1,9 +1,12 @@
-
-const getReviews = (productId) => {
+const getReviews = (productId, filters) => {
   const apiUrl = `/api/products/${productId}/reviews`;
+  const url = new URL(apiUrl, process.env.HOST_URL);
+  if (filters) {
+    url.search = new URLSearchParams(filters).toString();
+  }
 
   return new Promise(async (resolve, reject) => {
-    const res = await fetch(apiUrl, {
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

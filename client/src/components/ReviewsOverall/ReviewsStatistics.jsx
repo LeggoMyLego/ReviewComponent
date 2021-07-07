@@ -35,9 +35,9 @@ const ReviewsStatistics = (props) => {
       </Text>
       <OveralBreakdownWrapper>
         <RatingBreakdownWrapper>
-          <h3 className="reviews-statistics__title">
+          <Title>
             Rating
-          </h3>
+          </Title>
           {
             Object.values(data.aggregatedReviewsData).reverse().map((data, idx) => (
               <RatingBox key={idx} star={5 - idx} data={data}/>
@@ -89,4 +89,10 @@ const StatisticsWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   padding: 0.9375rem 0px;
+`;
+
+const Title = styled.h3` 
+  font-size: 1rem;
+  line-height: 1.5625rem;
+  font-weight: 400;
 `;
